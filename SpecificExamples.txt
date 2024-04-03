@@ -1,0 +1,15 @@
+Scenario 1: Player retrieves weather data successfully
+
+i.	User enters "New York, NY" as the city and state, and provides a valid OpenWeatherMap API key in the menu prompt.
+ii.	 Retrieve weather data for New York, NY using the provided API key.
+iii.	Process/filter and extract relevant information like temperature, humidity, and wind speed.
+iv.	Save the weather data to a CSV file formatted "City_State_Weather_Data.csv".
+v.	Display the retrieved weather information to the user.
+
+Scenario 2: Player fails to retrieve weather data
+
+i.	User enters an invalid city or state name (e.g., "Atlantis, ZZ") and provides a valid OpenWeatherMap API key.
+ii.	 Attempt to retrieve weather data for Atlantis, ZZ using the provided API key.
+iii.	Receive an error response from the API due to the invalid location.
+iv.	Show an error message that shows the weather data could not be found for the city and state entered.
+v.	The app lets you know that it can't find the weather for Atlantis, ZZ because the location is invalid. The program reminds you to make sure you enter the correct city and state to get the right information.

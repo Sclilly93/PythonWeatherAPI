@@ -1,0 +1,55 @@
+Import os module to check existence of file before appending data to it
+Import requests module sending HTTP requests to APIs
+Import pandas as pd library for data manipulation and CSV file operations
+Import date time module for retrieving and formatting the current date and time in weather data
+Import sys is used in program to exit the script when user chooses to exit menu
+
+
+Function get_weather_data(api_key, city, state_code)
+    Takes in parameters to construct URL
+    Send request to OpenWeatherMap API
+    If response status code is 200 successful aka cacheable
+        Parse JSON response
+        Converts JSON object in text to Javascript object
+        Extract relevant weather data (City, Weather, Feels Like, Temperature, Humidity, Wind Speed)
+        Format text/ object data with appropriate units and timestamp
+        Return weather_data
+    Else
+        Print error message with response status code
+        Return None
+
+Function save_to_csv(filename, weather_data)
+    Create DataFrame from weather_data
+    (Use pandas to create a DataFrame from the weather_data)
+    Check if file exists to determine header writing
+    Append weather_data to CSV(comma-separated values) file with appropriate headers
+
+Function get_user_input()
+    Display prompt for user to enter city and state (e.g., "Madison, IN")
+    Split input into city and state_code using comma as seperator
+    Display a prompt for user to enter OpenWeatherMap API key
+    Return city, state_code, api_key as a tuple
+
+Function main()
+    Loop indefinitely using while loop to continuously display menu options
+        Display menu options (Get Weather Data, Instructions for API Key, Exit)
+        Accept user choice input from menu options
+        Use switch statement/ if-elif-else block to handle different choices
+        If choice is 1
+            Get user input, call function to obtian city, state_code, and api_key
+            Retrieve weather data by calling get_weather_data function with obtained perameters
+            If weather_data is not None
+                Generate filename based on city and state_code
+                Save weather_data to CSV file using save_to_csv function
+                Save data to CSV file with appropriate headers.
+                Display weather information to user
+            Else
+                Print error message for failed data retrieval
+        Else If choice is 2
+            Display instructions for obtaining API key from OpenWeatherMap website
+            Wait for user acknowledgement before returning to main menu
+        Else If choice is 3
+            If user chooses to exit 
+            Print exit message and terminate program
+
+Call main() at beginning of script to start the program's execution

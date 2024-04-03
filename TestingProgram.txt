@@ -1,0 +1,47 @@
+While working on this weather data retrieval program, I ran multiple tests to make sure it was maintainable and dependable for furture updates with less edgecases. Here are some of the specific tests, the problems I faced and how I fixed them, along with code snippets of previous iterations to review.
+
+User Input Validation Test:
+⦁	Problem: At first, the program didn't deal with situations where the user input was wrong or in an unusual format. For instance, if the user typed in a city or state that doesn't exist, the program would just stop running without asking for input again.
+
+Below is the previous and updated code snippet:
+
+Before:
+def get_user_input():
+  city_state = input("Enter a city and state (e.g. Madison, IN): ")
+  city, state_code = city_state.split(",")
+  api_key = input(
+      "Enter your API key from OpenWeatherMap (https://openweathermap.org/): ")
+  return city.strip(), state_code.strip(), api_key
+
+After:
+def get_user_input():
+    while True:
+        city_state = input("Enter a city and state (e.g. Madison, IN): ")
+        try:
+            city, state_code = city_state.split(",")
+            api_key = input("Enter your API key from OpenWeatherMap (https://openweathermap.org/): ")
+            return city.strip(), state_code.strip(), api_key
+        except ValueError:
+            print("Invalid format. Please enter the city and state separated by a comma.")
+
+To fix this, I added a loop that would keep asking the user for input until they entered valid information. 
+After this change, the program was able to handle invalid inputs by re-prompting the user until the correct format was entered.
+
+
+Data Saving Test Edge Case:
+Problem: The program was replacing the current CSV file with fresh data instead of adding to it. To fix this, I changed the save_to_csv function to verify if the file is already there and add data to it if it is. 
+
+Intial logic:
+def save_to_csv(filename, weather_data):
+    df = pd.DataFrame(weather_data, index=[0])
+    df.to_csv(filename, index=False)
+
+
+Revised code snippet solution:
+
+def save_to_csv(filename, weather_data):
+    df = pd.DataFrame(weather_data, index=[0])
+    header = not os.path.isfile(filename)
+    df.to_csv(filename, mode='a', index=False, header=header)
+
+The code in the intial stage didn't have the required error handling and input validation, which caused the problems found during testing. The new Python code examples show the enhancements made to fix these issues. These testing implementations make sure the program is stronger and easier to use.
