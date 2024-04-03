@@ -7,7 +7,7 @@ import sys
 
 # Reference: https://openweathermap.org/API
 # Save your API key here after creating key from OpenWeatherMap
-# API_KEY = "276070469248398c9abdb316f27dd0a5"
+# API_KEY = "276070####################"
 
 def get_weather_data(api_key, city, state_code):
   # Construct the API request URL using the provided parameters
